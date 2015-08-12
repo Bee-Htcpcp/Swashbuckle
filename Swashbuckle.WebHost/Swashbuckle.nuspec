@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Swashbuckle</id>
+    <id>Swashbuckle.Net45</id>
     <version>$version$</version>
     <title>Swashbuckle - Swagger for WebApi (.NET 4.5)</title>
     <authors>Richard Morris</authors>
@@ -16,7 +16,7 @@
     <dependencies>
       <dependency id="Microsoft.AspNet.WebApi.WebHost" version="5.2.2" />
       <dependency id="WebActivatorEx" />
-      <dependency id="Swashbuckle.Core" version="5.2.1" />
+      <dependency id="Swashbuckle.Core.Net45" version="5.2.1" />
     </dependencies>
   </metadata>
   <files>
