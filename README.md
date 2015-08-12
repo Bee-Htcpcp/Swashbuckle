@@ -1,6 +1,9 @@
 Swashbuckle 5.0
 =========
 
+[![Build status](https://ci.appveyor.com/api/projects/status/pxbts2s72tjew0ll?svg=true)](https://ci.appveyor.com/project/kharnt0x/swashbuckle)
+
+
 Seamlessly adds a [Swagger](http://swagger.io/) to WebApi projects! Combines ApiExplorer and Swagger/swagger-ui to provide a rich discovery, documentation and playground experience to your API consumers.
 
 In addition to its Swagger generator, Swashbuckle also contains an embedded version of [swagger-ui](https://github.com/swagger-api/swagger-ui) which it will automatically serve up once Swashbuckle is installed. This means you can compliment your API with a slick discovery UI to assist consumers with their integration efforts. Best of all, it requires minimal coding and maintenance, allowing you to focus on building an awesome API!
@@ -63,7 +66,7 @@ Then manually enable the Swagger docs and swagger-ui by invoking the extension m
 
     httpConfiguration
         .EnableSwagger(c => c.SingleApiVersion("v1", "A title for your API"))
-        .EnableSwaggerUi();    
+        .EnableSwaggerUi();
 
 ## Troubleshooting ##
 
@@ -124,7 +127,7 @@ If schemes are not explicitly provided in a Swagger 2.0 document, then the schem
 
 Use this to describe a single version API. Swagger 2.0 includes an "Info" object to hold additional metadata for an API. Version and title are required but you may also provide additional fields as shown above.
 
-__NOTE__: If you're WebApi is hosted in IIS, you should avoid using full-stops in the version name (e.g. "1.0"). The full-stop at the tail of the URL will cause IIS to treat it as a static file (i.e. with an extension) and bypass the URL Routing Module and therefore, WebApi. 
+__NOTE__: If you're WebApi is hosted in IIS, you should avoid using full-stops in the version name (e.g. "1.0"). The full-stop at the tail of the URL will cause IIS to treat it as a static file (i.e. with an extension) and bypass the URL Routing Module and therefore, WebApi.
 
 ### Describing Multiple API Versions ###
 
@@ -223,7 +226,7 @@ Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas fo
                 c.MapType<ProductType>(() => new Schema { type = "integer", format = "int32" });
 
                 c.SchemaFilter<ApplySchemaVendorExtensions>();
-                
+
                 c.IgnoreObsoleteProperties();
 
                 c.UseFullTypeNameInSchemaIds();
@@ -233,7 +236,7 @@ Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas fo
 
 #### IgnoreObsoleteProperties ####
 
-Set this flag to omit schema property descriptions for any type properties decorated with the Obsolete attribute 
+Set this flag to omit schema property descriptions for any type properties decorated with the Obsolete attribute
 
 #### MapType ####
 
@@ -323,7 +326,7 @@ Swashbuckle will automatically create a "success" response for each operation ba
 
 ### Working Around Swagger 2.0 Constraints ###
 
-In contrast to WebApi, Swagger 2.0 does not include the query string component when mapping a URL to an action. As a result, Swashbuckle will raise an exception if it encounters multiple actions with the same path (sans query string) and HTTP method. You can workaround this by providing a custom strategy to pick a winner or merge the descriptions for the purposes of the Swagger docs 
+In contrast to WebApi, Swagger 2.0 does not include the query string component when mapping a URL to an action. As a result, Swashbuckle will raise an exception if it encounters multiple actions with the same path (sans query string) and HTTP method. You can workaround this by providing a custom strategy to pick a winner or merge the descriptions for the purposes of the Swagger docs
 
     httpConfiguration
         .EnableSwagger((c) =>
@@ -415,9 +418,9 @@ If you're using the existing config. interface to customize the final Swagger do
 | --------------- | --------------- | ---------------- |
 | ResolveBasePathUsing | RootUrl | |
 | ResolveTargetVersionUsing | N/A | version is now implicit in the docs URL e.g. "swagger/docs/{apiVersion}" |
-| ApiVersion | SingleApiVersion| now supports additional metadata for the version | 
+| ApiVersion | SingleApiVersion| now supports additional metadata for the version |
 | SupportMultipleApiVersions | MultipleApiVersions | now supports additional metadata for each version |
-| Authorization | BasicAuth/ApiKey/OAuth2 | | 
+| Authorization | BasicAuth/ApiKey/OAuth2 | |
 | GroupDeclarationsBy | GroupActionsBy | |
 | SortDeclarationsBy | OrderActionGroupsBy | |
 | MapType | MapType | now accepts Func&lt;Schema&gt; instead of Func&lt;DataType&gt; |
@@ -442,7 +445,7 @@ If you're using the existing config. interface to customize the final Swagger do
 
 If you see this message, it means the swagger-ui received an unexpected response when requesting the Swagger document. You can troubleshoot further by navigating directly to the discovery URL included in the error message. This should provide more details.
 
-If the discovery URL returns a 404 Not Found response, it may be due to a full-stop in the version name (e.g. "1.0"). This will cause IIS to treat it as a static file (i.e. with an extension) and bypass the URL Routing Module and therefore, WebApi. 
+If the discovery URL returns a 404 Not Found response, it may be due to a full-stop in the version name (e.g. "1.0"). This will cause IIS to treat it as a static file (i.e. with an extension) and bypass the URL Routing Module and therefore, WebApi.
 
 To workaround, you can update the version name specified in SwaggerConfig.cs. For example, to "v1", "1-0" etc. Alternatively, you can change the route template being used for the swagger docs (as shown [here](#custom-routes)) so that the version parameter is not at the end of the route.
 
@@ -503,7 +506,7 @@ Swagger 2.0 allows additional meta-data (aka vendor extensions) to be added at v
         }
     }
 
-As per the specification, all extension properties should be prefixed by "x-" 
+As per the specification, all extension properties should be prefixed by "x-"
 
 ### How to configure OAuth2 support
 
